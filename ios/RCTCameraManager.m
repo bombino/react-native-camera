@@ -162,7 +162,7 @@ RCT_CUSTOM_VIEW_PROPERTY(captureQuality, NSInteger, RCTCamera) {
       break;
   }
 
-  [self setCaptureQuality:qualityString];
+//  [self setCaptureQuality:qualityString];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(aspect, NSInteger, RCTCamera) {
@@ -449,14 +449,14 @@ RCT_EXPORT_METHOD(hasFlash:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRej
       self.metadataOutput = metadataOutput;
     }
 
-    __weak RCTCameraManager *weakSelf = self;
-    [self setRuntimeErrorHandlingObserver:[NSNotificationCenter.defaultCenter addObserverForName:AVCaptureSessionRuntimeErrorNotification object:self.session queue:nil usingBlock:^(NSNotification *note) {
-      RCTCameraManager *strongSelf = weakSelf;
-      dispatch_async(strongSelf.sessionQueue, ^{
-        // Manually restarting the session since it must have been stopped due to an error.
-        [strongSelf.session startRunning];
-      });
-    }]];
+    // __weak RCTCameraManager *weakSelf = self;
+    // [self setRuntimeErrorHandlingObserver:[NSNotificationCenter.defaultCenter addObserverForName:AVCaptureSessionRuntimeErrorNotification object:self.session queue:nil usingBlock:^(NSNotification *note) {
+    //   RCTCameraManager *strongSelf = weakSelf;
+    //   dispatch_async(strongSelf.sessionQueue, ^{
+    //     // Manually restarting the session since it must have been stopped due to an error.
+    //     [strongSelf.session startRunning];
+    //   });
+    // }]];
 
     [self.session startRunning];
   });
