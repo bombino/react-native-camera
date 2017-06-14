@@ -458,7 +458,7 @@ class RCTCameraViewFinder extends TextureView implements TextureView.SurfaceText
             _camera.setParameters(params);
 
             // Start auto-focus now that focus area has been set. If successful, then can cancel
-            // it afterwards.
+            // it afterwards. Wrap in try-catch to avoid crashing on merely autoFocus fails.
             try {
                 _camera.autoFocus(new Camera.AutoFocusCallback() {
                     @Override
@@ -469,7 +469,6 @@ class RCTCameraViewFinder extends TextureView implements TextureView.SurfaceText
                     }
                 });
             } catch (Exception e) {
-                // just print stack trace, we don't want to crash by autoFocus fails
                 e.printStackTrace();
             }
         }
